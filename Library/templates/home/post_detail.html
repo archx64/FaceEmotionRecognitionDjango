@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="card mt-4" style="max-width: 32em;">
+        <div class="card-body">
+            <h4 class="card-title">{{ object.title }}</h4>
+            <h6 class="card-title text-success">uploaded by {{ object.author }}</h6>
+            <p class="small">{{ object.major }}</p>
+            <p class="small text-muted">{{ object.date }}</p>
+        </div>
+        <div class="card-body">
+            <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+            <p class="card-text mt-4">{{ object.content }}</p>
+            <p class="card-text text-muted">Backend Used: {{ object.detector }}</p>
+            <p class="card-text text-info">The person is {{ object.emotion }}</p>
+            <a href="{{ object.file.url }}">{{ object.file }}</a>
+            {% if object.author == user %}
+                <div class="mt-2">
+                    <a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+                    <a class="btn btn-outline-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+{% endblock content %}

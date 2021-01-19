@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid pt-3 pb-4">
+
+        <p class="mt-4">
+            Deepface is a lightweight face recognition and facial attribute analysis (age, gender, emotion and race)
+            framework for python. It is a hybrid face recognition framework wrapping state-of-the-art models: VGG-Face,
+            Google FaceNet, OpenFace, Facebook DeepFace, DeepID, ArcFace and Dlib. The library is mainly based on Keras
+            and
+            TensorFlow.
+        </p>
+        <p>
+            A modern face recognition pipeline consists of 4 common stages: detect, align, represent and
+            verify. Deepface handles all these common stages in the background. You can just call its verification, find
+            or
+            analysis function in its interface with a single line of code.
+        </p>
+        <p>
+            Face detection and alignment are early stages of a modern face recognition pipeline. OpenCV haar cascade,
+            SSD, Dlib and MTCNN methods are wrapped in deepface as a detector. You can optionally pass a custom detector
+            to functions in deepface interface. MTCNN is the default detector if you won't pass any detector.
+        </p>
+        <p>
+            Deepface also offers facial attribute analysis including age, gender, facial expression (including angry,
+            fear, neutral, sad, disgust, happy and surprise) and race (including asian, white, middle eastern, indian,
+            latino and black) predictions. Analysis function under the DeepFace interface is used to find demography of
+            a face.
+        </p>
+
+        <img class="w-100" src="{% static 'deepface-icon-labeled.png' %}" alt="">
+    </div>
+{% endblock content %}
