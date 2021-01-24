@@ -1,7 +1,7 @@
 import dlib
 import cv2
-
 from deepface import DeepFace
+import time
 
 detector = dlib.get_frontal_face_detector()
 
@@ -15,14 +15,18 @@ def classify_emotion(image, backend):
         return [image, 'Cannot detect a face']
 
     else:
+        start = time.time()
         predictions = DeepFace.analyze(image, detector_backend=backend, enforce_detection=False, actions=['emotion'])
         print(predictions)
+
+        end = time.time()
 
         for face in faces:
             x, y = face.left(), face.top()
             w, h = face.right(), face.bottom()
             cv2.rectangle(image, (x, y), (w, h), (0, 255, 255), 5)
 
+        total = end - start
         emotion = predictions['dominant_emotion']
         # age = str(predictions['age'])
         # gender = predictions['gender']
@@ -30,4 +34,4 @@ def classify_emotion(image, backend):
         # text = emotion + ', ' + age + ', ' + gender + ', ' + race
         text = emotion
         cv2.putText(image, text, (x - 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 5)
-        return [image, text]
+        return [image, text, total]

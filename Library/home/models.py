@@ -25,6 +25,7 @@ class Post(models.Model):
     detector = models.CharField(max_length=50, choices=BACKEND_CHOICES, default='mtcnn')
     image = models.ImageField(default='default.jpg', blank=False, upload_to='face_pictures', validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg'])])
     emotion = models.TextField(default='Failed')
+    time = models.FloatField(default=0, max_length=50, blank=False)
 
     def __str__(self):
         return self.title
@@ -34,7 +35,8 @@ class Post(models.Model):
         cv_img = np.array(pil_img)
         predictions = classify_emotion(cv_img, self.detector)
         self.emotion = predictions[1]
-
+        self.time = predictions[2]
+        print(self.time)
         img_pil = Image.fromarray(predictions[0])
 
         buffer = BytesIO()

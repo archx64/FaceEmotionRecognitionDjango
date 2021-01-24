@@ -12,8 +12,8 @@
             <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
             <p class="card-text mt-4">{{ object.content }}</p>
             <p class="card-text text-muted">Backend Used: {{ object.detector }}</p>
-            <p class="card-text text-info">The person is {{ object.emotion }}</p>
-            <a href="{{ object.file.url }}">{{ object.file }}</a>
+            <p class="card-text text-info">Detected Emotion {{ object.emotion }}</p>
+            <p class="card-text text-danger">Total Time {{ object.time }} seconds</p>
             {% if object.author == user %}
                 <div class="mt-2">
                     <a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
